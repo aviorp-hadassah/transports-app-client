@@ -106,14 +106,13 @@
 
 <script>
 import { defineComponent } from "vue";
-import { mapFields } from "vuex-map-fields";
 import PageLayout from "layouts/PageLayout.vue";
 import SectionLayout from "layouts/SectionLayout.vue";
 import { getTransports } from "src/api/transport";
 import LoadingMixin from "src/mixins/LoadingMixin";
 import NotificationMixin from "src/mixins/NotificationMixin";
 export default defineComponent({
-  name: "PageIndex",
+  name: "Home",
   components: {
     PageLayout,
     SectionLayout,
