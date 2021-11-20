@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Heebo&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Assistant&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: "Assistant", sans-serif;
+  background-color:$accent;
+}
+
+.space-left > * {
+  margin-left: 10px;
+}
+
+.space-bottom > * {
+  margin-bottom: 10px;
+}
+
+.q-table {
+  th {
+    font-size: 1.1rem;
+  }
+  .q-td,
+  .q-table__bottom {
+    font-size: 0.9rem;
+  }
+}
