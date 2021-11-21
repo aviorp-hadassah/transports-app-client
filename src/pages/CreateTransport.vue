@@ -8,68 +8,58 @@
           title="מוצא"
           v-model="form.origin"
           required
-          :rules="[required]"
+     
         ></a-input>
         <a-input
           title="יעד"
           v-model="form.destination"
           required
-          :rules="[required]"
         ></a-input>
         <a-date
           title="מתאריך"
           v-model="form.fromDate"
           required
-          :rules="[required]"
         ></a-date>
         <a-date
           title="עד תאריך"
           v-model="form.toDate"
           required
-          :rules="[required]"
         ></a-date>
         <a-time
           title="משעה"
           v-model="form.fromTime"
           required
-          :rules="[required]"
         ></a-time>
         <a-time
           title="עד שעה"
           v-model="form.toTime"
           required
-          :rules="[required]"
         ></a-time>
         <a-input
           title="מספר מושבים"
           v-model="form.numberOfSeats"
           required
-          :rules="[required]"
         ></a-input>
         <a-select
           title="סוג רכב"
           v-model="form.vehicleType"
           :options="vehicleOptions"
           required
-          :rules="[required]"
         ></a-select>
         <a-input
           title="שם איש קשר"
           v-model="form.contactName"
           required
-          :rules="[required]"
         ></a-input>
         <a-input
           title="מספר איש קשר"
           v-model="form.contactPhone"
           required
-          :rules="[required]"
         ></a-input>
         <a-input
           title="מסלול"
           v-model="form.route"
-          required
-          :rules="[required]"
+          
         ></a-input>
 
         <a-radio title="קו קבוע?" required>
