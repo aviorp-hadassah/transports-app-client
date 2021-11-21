@@ -4,7 +4,9 @@
       <h4 class="row items-center">
         <slot name="title"></slot>
       </h4>
-      <slot name="header-buttons"></slot>
+      <div class="row items-center q-gutter-md">
+        <slot name="header-buttons"></slot>
+      </div>
     </header>
     <slot></slot>
     <footer class="row justify-end space-left">

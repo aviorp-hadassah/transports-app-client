@@ -1,5 +1,5 @@
 <template>
-  <q-header elevated class="header">
+  <q-header  class="header">
     <q-toolbar >
       <q-btn
         flat
@@ -60,6 +60,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.header {}
+.header {
+  background-color: $dark;
+}
 
 </style>

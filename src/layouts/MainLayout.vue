@@ -1,6 +1,9 @@
 <template>
-  <q-layout view="hhh Lpr fff" >
-    <Appbar @toggle-menu="leftDrawerOpen = !leftDrawerOpen" title="מערכת הסעות" />
+  <q-layout view="hhh Lpr fff">
+    <Appbar
+      @toggle-menu="leftDrawerOpen = !leftDrawerOpen"
+      title="מערכת הסעות"
+    />
     <SideBar
       :essentialLinks="essentialLinks"
       v-model="leftDrawerOpen"
@@ -23,24 +26,28 @@ const linksList = [
     // caption: 'quasar.dev',
     icon: "home",
     link: "/#/",
+    name: "home",
   },
   {
     title: "יצירת הסעה חדשה",
     // caption: 'quasar.dev',
     icon: "note_add",
     link: "/#/create-transport",
+    name: "createTransport",
   },
   {
     title: "ניהול הסעות",
-    caption: "github.com/quasarframework",
+    // caption: "github.com/quasarframework",
     icon: "code",
     link: "/#/manage-transports",
+    name: "manageTransports",
   },
   {
     title: "היסטוריית הסעות",
-    caption: "chat.quasar.dev",
+    // caption: "chat.quasar.dev",
     icon: "history",
     link: "/#/transports-history",
+    name: "transportHistory",
   },
   {
     title: "Forum",

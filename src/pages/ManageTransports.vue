@@ -1,16 +1,23 @@
 <template>
   <page-layout>
-    <template #title>היסטוריית הסעות</template>
+    <template #title>ניהול הסעות</template>
     <template #header-buttons>
-      <q-btn
-        square
-        color="dark"
-        text-color="secondary"
-        label="רענן טבלה"
-        icon="refresh"
-        @click="getTransports"
-        push
-      />
+      <div class="row items-center">
+        <q-btn flat icon="list">
+          <q-tooltip style="font-size: 14px">תצוגת טבלה</q-tooltip>
+        </q-btn>
+        <q-btn flat icon="view_module">
+          <q-tooltip style="font-size: 14px">תצוגת כרטיסים</q-tooltip>
+        </q-btn>
+      </div>
+      <div class="row items-center">
+        <span class="q-mx-sm">סנן לפי:</span>
+        <q-tabs v-model="tab" class="text-dark" dense>
+          <q-tab name="all" icon="select_all" label="הכל" />
+          <q-tab name="pending" icon="schedule" label="ממתינים" />
+          <q-tab name="approved" icon="done" label="מאושרים" />
+        </q-tabs>
+      </div>
     </template>
     <q-table class="q-my-lg shadow-10" square :columns="columns" :rows="rows">
       <template v-slot:body="props">
@@ -61,8 +68,7 @@
             ></q-icon>
           </q-td>
           <q-td key="status" :props="props" class="status">
-              <q-icon
-                v-if="props.row.status === 2"
+             <q-icon v-if="props.row.status === 2"
                 name="schedule"
                 color="orange"
                 size="sm"
@@ -98,7 +104,7 @@ import NotificationMixin from "../mixins/NotificationMixin.js";
 import { getTransports } from "src/api/transport.js";
 import { formatDate } from "../utils";
 export default defineComponent({
-  name: "TransportsHistory",
+  name: "ManageTransports",
   components: {
     PageLayout,
     SectionLayout,
@@ -106,6 +112,7 @@ export default defineComponent({
   mixins: [LoadingMixin, NotificationMixin],
   data() {
     return {
+      tab: "all",
       columns: [
         {
           name: "origin",

@@ -80,7 +80,7 @@
     </q-form>
     <template #action-buttons>
       <q-btn dark push @click="clearForm">נקה טופס</q-btn>
-      <q-btn color="primary" push @click="onSubmit">שלח טופס</q-btn>
+      <q-btn color="primary" text-color="dark" push @click="onSubmit">שלח טופס</q-btn>
     </template>
   </page-layout>
 </template>
@@ -163,8 +163,8 @@ export default {
         destination: "",
         fromDate: "",
         toDate: "",
-        fromHour: "",
-        toHour: "",
+        fromHour: null,
+        toHour: null,
         isPermanent: null,
         numberOfSeats: null,
         vehicleType: "",

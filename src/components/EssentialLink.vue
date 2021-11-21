@@ -3,8 +3,8 @@
     clickable
     tag="a"
     :href="link"
-
-    exact-active-class="primary"
+    :active="$route.name === name"
+    
   >
     <q-item-section v-if="icon" avatar>
       <q-icon :name="icon" />
@@ -44,6 +44,16 @@ export default defineComponent({
       type: String,
       default: "",
     },
+    name: {
+      type: String,
+      default: "",
+    },
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.active-class {
+  color: rgba($color:$primary, $alpha: .7) !important;
+}
+</style>

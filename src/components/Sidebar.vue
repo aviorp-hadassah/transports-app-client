@@ -1,11 +1,11 @@
 <template>
   <q-drawer v-bind="$attrs">
     <div class="column justify-center items-center q-pa-lg space-bottom">
-    <!-- <q-avatar size="84px" color="orange">J</q-avatar> -->
-    <q-avatar size="84px">
-      <img src="https://cdn.quasar.dev/img/avatar.png" />
-    </q-avatar>
-    <h6 class="divider">שלום, אביגדור פליצרמן</h6>
+      <!-- <q-avatar size="84px" color="orange">J</q-avatar> -->
+      <q-avatar size="84px">
+        <img src="https://cdn.quasar.dev/img/avatar.png" />
+      </q-avatar>
+      <h6 class="divider">שלום, אביגדור פליצרמן</h6>
     </div>
     <q-list dark>
       <q-item-label header>תפריט ניווט</q-item-label>
@@ -34,15 +34,14 @@ export default {
 };
 </script>
 
-
 <style lang="scss" scoped>
 .divider {
   &::after {
-    content:'';
+    content: "";
     display: block;
     width: 100%;
     height: 1px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid $primary;
     margin-top: 10px;
   }
 }

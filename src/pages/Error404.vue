@@ -1,21 +1,27 @@
 <template>
-  <div class="fullscreen bg-primary text-white text-center q-pa-md flex flex-center">
+  <div
+    class="
+      fullscreen
+      bg-primary
+      text-white text-center
+      q-pa-md
+      flex flex-center
+    "
+  >
     <div>
-      <div style="font-size: 30vh">
-        404
-      </div>
+      <div style="font-size: 30vh; opacity: .9" class="text-dark">404</div>
 
-      <div class="text-h2 q-mb-md" style="opacity:.6">
-       אופס.. טעות בכתובת
+      <div class="text-h2 q-mb-md text-dark" style="opacity: 0.6">
+        אופס.. טעות בכתובת
       </div>
-      <div class="text-h5" style="opacity:.6">
-       הדף שחיפשת לא קיים..
+      <div class="text-h5 text-dark" style="opacity: 0.6">
+        הדף שחיפשת לא קיים..
       </div>
 
       <q-btn
         class="q-mt-xl"
         color="white"
-        text-color="secondary"
+        text-color="dark"
         unelevated
         to="/#/"
         label="חזרה לדף הבית"
@@ -26,9 +32,9 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'Error404'
-})
+  name: "Error404",
+});
 </script>
