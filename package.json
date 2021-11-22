@@ -1,10 +1,9 @@
 {
   "name": "transports-app-quasar",
   "version": "0.0.1",
-  "description": "A Quasar Framework app",
-  "productName": "Quasar App",
-  "author": "avior peretz",
   "private": true,
+  "description": "A Quasar Framework app",
+  "author": "avior peretz",
   "scripts": {
     "test": "echo \"No test specified\" && exit 0"
   },
@@ -21,6 +20,7 @@
   },
   "devDependencies": {
     "@quasar/app": "^3.0.0",
+    "@vue/cli-plugin-vuex": "^4.5.15",
     "postcss-rtlcss": "^3.4.1"
   },
   "browserslist": [
@@ -38,5 +38,6 @@
     "node": ">= 12.22.1",
     "npm": ">= 6.13.4",
     "yarn": ">= 1.21.1"
-  }
+  },
+  "productName": "Quasar App"
 }

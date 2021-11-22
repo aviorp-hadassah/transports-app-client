@@ -31,6 +31,7 @@
         </p>
       </section-layout>
     </div>
+    {{currentUser}}
     <section-layout>
       <template #title>ההסעות האחרונות שלך</template>
       <q-table
@@ -87,16 +88,28 @@
               ></q-icon>
             </q-td>
             <q-td key="status" :props="props" class="status">
-              <div v-if="props.row.isPending">
-                <q-icon
-                  v-if="props.row.isPending"
-                  name="schedule"
-                  color="orange"
-                  size="md"
-                  class="q-mr-lg"
-                ></q-icon>
-              </div>
-            </q-td>
+            <q-icon
+              v-if="props.row.status === 2"
+              name="schedule"
+              color="orange"
+              size="sm"
+              class="q-mr-lg"
+            />
+            <q-icon
+              v-if="props.row.status === 1"
+              name="done"
+              color="green"
+              size="sm"
+              class="q-mr-lg"
+            />
+            <q-icon
+              v-if="props.row.status === 0"
+              name="close"
+              color="red"
+              size="sm"
+              class="q-mr-lg"
+            />
+          </q-td>
           </q-tr>
         </template>
       </q-table>
@@ -111,6 +124,7 @@ import SectionLayout from "layouts/SectionLayout.vue";
 import { getTransports } from "src/api/transport";
 import LoadingMixin from "src/mixins/LoadingMixin";
 import NotificationMixin from "src/mixins/NotificationMixin";
+import { mapFields } from "vuex-map-fields";
 export default defineComponent({
   name: "Home",
   components: {
@@ -220,6 +234,9 @@ export default defineComponent({
     } finally {
       this.toggleLoading();
     }
+  },
+  computed: {
+    // ...mapFields('user' , ['currentUser'])
   },
 });
 </script>

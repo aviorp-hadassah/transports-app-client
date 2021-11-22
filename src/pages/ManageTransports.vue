@@ -3,10 +3,10 @@
     <template #title>ניהול הסעות</template>
     <template #header-buttons>
       <div class="row items-center">
-        <q-btn flat icon="list">
+        <q-btn flat icon="list" @click="showTable = true">
           <q-tooltip style="font-size: 14px">תצוגת טבלה</q-tooltip>
         </q-btn>
-        <q-btn flat icon="view_module">
+        <q-btn flat icon="view_module" @click="showTable = false">
           <q-tooltip style="font-size: 14px">תצוגת כרטיסים</q-tooltip>
         </q-btn>
       </div>
@@ -19,7 +19,13 @@
         </q-tabs>
       </div>
     </template>
-    <q-table class="q-my-lg shadow-10" square :columns="columns" :rows="rows">
+    <q-table
+      class="q-my-lg shadow-10"
+      square
+      :columns="columns"
+      :rows="rows"
+      v-if="showTable"
+    >
       <template v-slot:body="props">
         <q-tr :props="props">
           <q-td key="origin" :props="props">
@@ -68,30 +74,98 @@
             ></q-icon>
           </q-td>
           <q-td key="status" :props="props" class="status">
-             <q-icon v-if="props.row.status === 2"
-                name="schedule"
-                color="orange"
-                size="sm"
-                class="q-mr-lg"
-              />
-              <q-icon
-                v-if="props.row.status === 1"
-                name="done"
-                color="green"
-                size="sm"
-                class="q-mr-lg"
-              />
-              <q-icon
-                v-if="props.row.status === 0"
-                name="close"
-                color="red"
-                size="sm"
-                class="q-mr-lg"
-              />
+            <q-icon
+              v-if="props.row.status === 2"
+              name="schedule"
+              color="orange"
+              size="sm"
+              class="q-mr-lg"
+            />
+            <q-icon
+              v-if="props.row.status === 1"
+              name="done"
+              color="green"
+              size="sm"
+              class="q-mr-lg"
+            />
+            <q-icon
+              v-if="props.row.status === 0"
+              name="close"
+              color="red"
+              size="sm"
+              class="q-mr-lg"
+            />
           </q-td>
         </q-tr>
       </template>
     </q-table>
+    <div class="row q-my-sm full-width justify-between" v-else>
+      <section-layout class="col-3">
+        <template #title>רשימת הסעות</template>
+        <q-list class="column full-width">
+          <q-item
+            clickable
+            v-ripple
+            v-for="item in rows"
+            :key="item._id"
+            class="column"
+            @click="selectedTransport = item"
+          >
+            <q-item-label>{{
+              `${item.origin} - ${item.destination}`
+            }}</q-item-label>
+            <q-item-label caption>{{
+              `מס' מושבים - ${item.numberOfSeats}`
+            }}</q-item-label>
+          </q-item>
+        </q-list>
+      </section-layout>
+      <section-layout class="col-8" v-if="selectedTransport">
+        <template #title>כותרת</template>
+        <template #header-buttons>
+          <span class="text-gray">מזהה הסעה : {{ selectedTransport._id }}</span>
+        </template>
+        <div class="row full-width justify-between items-center">
+          <div class="column">
+            <h6>כותרת משנה</h6>
+            <span class="text-caption">test</span>
+            <q-chip
+              v-if="selectedTransport.status === 2"
+              color="orange"
+              class="justify-center"
+              dark
+              icon="schedule"
+              >ממתין</q-chip
+            >
+            <q-chip
+              v-if="selectedTransport.status === 1"
+              color="green"
+              class="justify-center"
+              dark
+              icon="check_circle"
+              >מאושר</q-chip
+            >
+            <q-chip
+              v-if="selectedTransport.status === 0"
+              color="red"
+              class="justify-center"
+              dark
+              icon="highlight_off"
+              >נדחה</q-chip
+            >
+          </div>
+          <div class="column">
+            <h6>כותרת משנה</h6>
+          </div>
+        </div>
+      </section-layout>
+      <q-card class="col-8 q-ma-md" v-else>
+        <div class="column items-center q-mx-auto q-my-auto">
+          <img src="../assets/select.svg" />
+          <h4>יש לבחור הסעה</h4>
+        </div>
+      </q-card>
+    </div>
   </page-layout>
 </template>
 
@@ -113,6 +187,8 @@ export default defineComponent({
   data() {
     return {
       tab: "all",
+      showTable: true,
+      selectedTransport: null,
       columns: [
         {
           name: "origin",
@@ -133,7 +209,7 @@ export default defineComponent({
           align: "center",
           label: "מתאריך",
           field: "fromDate",
-          format: (val) => `${formatDate(val, "DD/MM/YYYY")}`,
+          format: (val) => formatDate(val, "DD/MM/YYYY"),
           sortable: true,
         },
         {
@@ -200,7 +276,7 @@ export default defineComponent({
           sortable: true,
         },
       ],
-      rows: [],
+      transports: [],
       methods: {
         formatDate,
       },
@@ -213,7 +289,7 @@ export default defineComponent({
     async getTransports() {
       this.toggleLoading();
       try {
-        this.rows = await getTransports();
+        this.transports = await getTransports();
       } catch (error) {
         this.triggerNotification(
           "negative",
@@ -221,6 +297,20 @@ export default defineComponent({
         );
       } finally {
         this.toggleLoading();
+      }
+    },
+  },
+  computed: {
+    rows() {
+      switch (this.tab) {
+        case "all":
+          return this.transports;
+        case "pending":
+          return this.transports.filter((el) => el.status === 2);
+        case "approved":
+          return this.transports.filter((el) => el.status === 1);
+        default:
+          return this.transports;
       }
     },
   },

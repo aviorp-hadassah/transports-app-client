@@ -12,7 +12,6 @@ export default {
                 message: 'הדף בטעינה..',
                 messageColor: 'accent'
             }
-
         }
     },
     methods: {
