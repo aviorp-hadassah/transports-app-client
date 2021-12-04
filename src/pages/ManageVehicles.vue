@@ -1,6 +1,6 @@
 <template>
   <page-layout>
-    <template #title>ניהול הסעות</template>
+    <template #title>ניהול צי רכב</template>
     <template #header-buttons>
       <div class="row items-center">
         <q-btn flat icon="list" @click="showTable = true">
@@ -175,10 +175,10 @@ import PageLayout from "layouts/PageLayout.vue";
 import SectionLayout from "layouts/SectionLayout.vue";
 import LoadingMixin from "../mixins/LoadingMixin.js";
 import NotificationMixin from "../mixins/NotificationMixin.js";
-import { getTransports } from "src/api/transport.js";
+import { getVehicles } from "src/api/vehicle.js";
 import { formatDate } from "../utils";
 export default defineComponent({
-  name: "ManageTransports",
+  name: "ManageVehicles",
   components: {
     PageLayout,
     SectionLayout,
@@ -276,7 +276,7 @@ export default defineComponent({
           sortable: true,
         },
       ],
-      transports: [],
+      vehicles: [],
       methods: {
         formatDate,
       },
@@ -289,7 +289,8 @@ export default defineComponent({
     async getTransports() {
       this.toggleLoading();
       try {
-        this.transports = await getTransports();
+        this.vehicles = await getVehicles();
+        console.log(this.vehicles);
       } catch (error) {
         this.triggerNotification(
           "negative",
@@ -304,13 +305,13 @@ export default defineComponent({
     rows() {
       switch (this.tab) {
         case "all":
-          return this.transports;
+          return this.vehicles;
         case "pending":
-          return this.transports.filter((el) => el.status === 2);
+          return this.vehicles.filter((el) => el.status === 2);
         case "approved":
-          return this.transports.filter((el) => el.status === 1);
+          return this.vehicles.filter((el) => el.status === 1);
         default:
-          return this.transports;
+          return this.vehicles;
       }
     },
   },

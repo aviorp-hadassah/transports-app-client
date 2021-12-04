@@ -4,37 +4,12 @@
     <q-form ref="form" greedy>
       <section-layout>
         <template #title>טופס יצירת הסעה חדשה</template>
-        <a-input
-          title="מוצא"
-          v-model="form.origin"
-          required
-     
-        ></a-input>
-        <a-input
-          title="יעד"
-          v-model="form.destination"
-          required
-        ></a-input>
-        <a-date
-          title="מתאריך"
-          v-model="form.fromDate"
-          required
-        ></a-date>
-        <a-date
-          title="עד תאריך"
-          v-model="form.toDate"
-          required
-        ></a-date>
-        <a-time
-          title="משעה"
-          v-model="form.fromTime"
-          required
-        ></a-time>
-        <a-time
-          title="עד שעה"
-          v-model="form.toTime"
-          required
-        ></a-time>
+        <a-input title="מוצא" v-model="form.origin" required></a-input>
+        <a-input title="יעד" v-model="form.destination" required></a-input>
+        <a-date title="מתאריך" v-model="form.fromDate" required></a-date>
+        <a-date title="עד תאריך" v-model="form.toDate" required></a-date>
+        <a-time title="משעה" v-model="form.fromTime" required></a-time>
+        <a-time title="עד שעה" v-model="form.toTime" required></a-time>
         <a-input
           title="מספר מושבים"
           v-model="form.numberOfSeats"
@@ -56,21 +31,19 @@
           v-model="form.contactPhone"
           required
         ></a-input>
-        <a-input
-          title="מסלול"
-          v-model="form.route"
-          
-        ></a-input>
+        <a-input title="מסלול" v-model="form.route"></a-input>
 
         <a-radio title="קו קבוע?" required>
-          <q-radio v-model="form.isPermanent" :val="true" label="כן"></q-radio>
+          <q-radio v-model="form.isPermanent" :val="true" label="כן" :rules="required"></q-radio>
           <q-radio v-model="form.isPermanent" :val="false" label="לא"></q-radio>
         </a-radio>
       </section-layout>
     </q-form>
     <template #action-buttons>
       <q-btn dark push @click="clearForm">נקה טופס</q-btn>
-      <q-btn color="primary" text-color="dark" push @click="onSubmit">שלח טופס</q-btn>
+      <q-btn color="primary" text-color="dark" push @click="onSubmit"
+        >שלח טופס</q-btn
+      >
     </template>
   </page-layout>
 </template>

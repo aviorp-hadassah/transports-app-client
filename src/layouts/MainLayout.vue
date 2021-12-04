@@ -20,6 +20,7 @@
 <script>
 import Appbar from "components/Appbar.vue";
 import SideBar from "components/Sidebar.vue";
+// a comment for change
 const linksList = [
   {
     title: "דף הבית",
@@ -36,13 +37,6 @@ const linksList = [
     name: "createTransport",
   },
   {
-    title: "ניהול הסעות",
-    // caption: "github.com/quasarframework",
-    icon: "code",
-    link: "/#/manage-transports",
-    name: "manageTransports",
-  },
-  {
     title: "היסטוריית הסעות",
     // caption: "chat.quasar.dev",
     icon: "history",
@@ -50,29 +44,37 @@ const linksList = [
     name: "transportHistory",
   },
   {
-    title: "Forum",
-    caption: "forum.quasar.dev",
-    icon: "record_voice_over",
-    link: "https://forum.quasar.dev",
+    title: "ניהול הסעות",
+    // caption: "github.com/quasarframework",
+    icon: "bus_alert",
+    link: "/#/manage-transports",
+    name: "manageTransports",
+  },
+
+  {
+    title: "ניהול צי רכב",
+    // caption: "forum.quasar.dev",
+    icon: "directions_bus",
+    link: "/#/manage-vehicles",
   },
   {
-    title: "Twitter",
-    caption: "@quasarframework",
-    icon: "rss_feed",
-    link: "https://twitter.quasar.dev",
+    title: "דוחות",
+    // caption: "@quasarframework",
+    icon: "assignment",
+    link: "/#/",
   },
-  {
-    title: "Facebook",
-    caption: "@QuasarFramework",
-    icon: "public",
-    link: "https://facebook.quasar.dev",
-  },
-  {
-    title: "Quasar Awesome",
-    caption: "Community Quasar projects",
-    icon: "favorite",
-    link: "https://awesome.quasar.dev",
-  },
+  // {
+  //   title: "Facebook",
+  //   caption: "@QuasarFramework",
+  //   icon: "public",
+  //   link: "https://facebook.quasar.dev",
+  // },
+  // {
+  //   title: "Quasar Awesome",
+  //   caption: "Community Quasar projects",
+  //   icon: "favorite",
+  //   link: "https://awesome.quasar.dev",
+  // },
 ];
 
 import { defineComponent, ref } from "vue";
